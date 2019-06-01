@@ -35,12 +35,11 @@ environment:
     platform: x86
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
-  # Upgrade npm to latest
-  - 'if "%nodejs_version%" LEQ 5 (npm install -g npm@5) else (npm install -g npm@latest)'
+  - npm install -g yarn
   - node -v
-  - npm -v
-  - npm install -g --loglevel error node-gyp
-  - npm install
+  - yarn -v
+  - yarn global add node-gyp
+  - yarn install
 build: off
 test_script:
-  - cmd: npm test
+  - cmd: yarn test
